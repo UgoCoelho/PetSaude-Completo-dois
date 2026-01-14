@@ -1,0 +1,98 @@
+﻿@model PetSaude_Completo.Models.Mensagem
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Mensagem</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Titulo" class="control-label"></label>
+                <input asp-for="Titulo" class="form-control" />
+                <span asp-validation-for="Titulo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AreaId" class="control-label"></label>
+                <select asp-for="AreaId" class="form-control" asp-items="ViewBag.AreaId"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CategoriaId" class="control-label"></label>
+                <select asp-for="CategoriaId" class="form-control" asp-items="ViewBag.CategoriaId"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="HorarioEnvio" class="control-label"></label>
+                <input asp-for="HorarioEnvio" class="form-control" />
+                <span asp-validation-for="HorarioEnvio" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FrequenciaMensagemId" class="control-label"></label>
+                <select asp-for="FrequenciaMensagemId" class="form-control" asp-items="ViewBag.FrequenciaMensagemId"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Conteudo" class="control-label"></label>
+                <input asp-for="Conteudo" class="form-control" />
+                <span asp-validation-for="Conteudo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DataInicio" class="control-label"></label>
+                <input asp-for="DataInicio" class="form-control" />
+                <span asp-validation-for="DataInicio" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DataFim" class="control-label"></label>
+                <input asp-for="DataFim" class="form-control" />
+                <span asp-validation-for="DataFim" class="text-danger"></span>
+            </div>
+
+            <!-- 🔥 COMORBIDADES -->
+            <div class="form-group mt-3">
+                <label class="control-label">Comorbidades</label>
+
+                @foreach (var comorbidade in (IEnumerable<PetSaude_Completo.Models.Comorbidade>)ViewData["Comorbidades"])
+                {
+                    <div class="form-check">
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="comorbidadesSelecionadas"
+                               value="@comorbidade.ComorbidadeId"
+                               id="comorbidade_@comorbidade.ComorbidadeId" />
+
+                        <label class="form-check-label"
+                               for="comorbidade_@comorbidade.ComorbidadeId">
+                            @comorbidade.Nome
+                        </label>
+                    </div>
+                }
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
