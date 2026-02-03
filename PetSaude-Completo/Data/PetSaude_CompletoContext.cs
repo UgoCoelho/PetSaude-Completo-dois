@@ -19,6 +19,8 @@ namespace PetSaude_Completo.Data
         public DbSet<Comorbidade> Comorbidade { get; set; } = default!;
         public DbSet<Frequencia> Frequencia { get; set; } = default!;
         public DbSet<Mensagem> Mensagem { get; set; } = default!;
+        public DbSet<Paciente> Pacientes { get; set; }
+
 
         // 🔥 TABELA DE JUNÇÃO
         public DbSet<MensagemComorbidade> MensagemComorbidade { get; set; } = default!;
