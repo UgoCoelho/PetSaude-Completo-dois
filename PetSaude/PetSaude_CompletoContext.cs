@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PetSaude_Completo.Models;
 
-namespace PetSaude_Completo.Data
+namespace PetSaude_Completo.PetSaude.Banco
 {
     public class PetSaude_CompletoContext : DbContext
     {

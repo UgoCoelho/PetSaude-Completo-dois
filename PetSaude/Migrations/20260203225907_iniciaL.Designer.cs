@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PetSaude_Completo.Data;
+using PetSaude_Completo.PetSaude.Banco;
 
 #nullable disable
 
 namespace PetSaude_Completo.Migrations
 {
     [DbContext(typeof(PetSaude_CompletoContext))]
-    partial class PetSaude_CompletoContextModelSnapshot : ModelSnapshot
+    [Migration("20260203225907_iniciaL")]
+    partial class iniciaL
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,3 +1,5 @@
 <Solution>
   <Project Path="PetSaude-Completo/PetSaude_Completo.csproj" />
+  <Project Path="PetSaude.Models/PetSaude.Models.csproj" Id="d6a6b855-d0f1-402b-b26a-4d9f6307448a" />
+  <Project Path="PetSaude/PetSaude.Banco.csproj" Id="1a34bd6e-d843-4173-8d8b-c62f365e8c17" />
 </Solution>

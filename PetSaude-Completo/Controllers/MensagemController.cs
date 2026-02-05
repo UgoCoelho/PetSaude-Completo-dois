@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using PetSaude_Completo.Data;
 using PetSaude_Completo.Models;
+using PetSaude_Completo.PetSaude.Banco;
 
 namespace PetSaude_Completo.Controllers
 {

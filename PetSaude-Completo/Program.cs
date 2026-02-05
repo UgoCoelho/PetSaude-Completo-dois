@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PetSaude_Completo.Data;
+using PetSaude_Completo.PetSaude.Banco;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<PetSaude_CompletoContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PetSaude_CompletoContext") ?? throw new InvalidOperationException("Connection string 'PetSaude_CompletoContext' not found.")));
