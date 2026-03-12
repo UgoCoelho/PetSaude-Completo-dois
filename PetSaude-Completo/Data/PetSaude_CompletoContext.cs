@@ -19,14 +19,16 @@ namespace PetSaude_Completo.Data
         public DbSet<Comorbidade> Comorbidade { get; set; } = default!;
         public DbSet<Frequencia> Frequencia { get; set; } = default!;
         public DbSet<Mensagem> Mensagem { get; set; } = default!;
-
-        // 🔥 TABELA DE JUNÇÃO
+        public DbSet<Paciente> Pacientes { get; set; }
+        public DbSet<Comorbidade> Comorbidades { get; set; }
+        public DbSet<PacienteComorbidade> PacienteComorbidades { get; set; }
         public DbSet<MensagemComorbidade> MensagemComorbidade { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
+            // 🔥 RELAÇÃO MENSAGEM - COMORBIDADE
             modelBuilder.Entity<MensagemComorbidade>()
                 .HasKey(mc => new { mc.MensagemId, mc.ComorbidadeId });
 
@@ -39,6 +41,20 @@ namespace PetSaude_Completo.Data
                 .HasOne(mc => mc.Comorbidade)
                 .WithMany(c => c.MensagemComorbidades)
                 .HasForeignKey(mc => mc.ComorbidadeId);
+
+            // 🔥 RELAÇÃO PACIENTE - COMORBIDADE
+            modelBuilder.Entity<PacienteComorbidade>()
+                .HasKey(pc => new { pc.PacienteId, pc.ComorbidadeId });
+
+            modelBuilder.Entity<PacienteComorbidade>()
+                .HasOne(pc => pc.Paciente)
+                .WithMany(p => p.PacienteComorbidades)
+                .HasForeignKey(pc => pc.PacienteId);
+
+            modelBuilder.Entity<PacienteComorbidade>()
+                .HasOne(pc => pc.Comorbidade)
+                .WithMany(c => c.PacienteComorbidades)
+                .HasForeignKey(pc => pc.ComorbidadeId);
         }
     }
 }

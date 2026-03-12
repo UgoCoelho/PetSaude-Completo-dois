@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PetSaude_Completo.Data;
 
@@ -11,9 +12,11 @@ using PetSaude_Completo.Data;
 namespace PetSaude_Completo.Migrations
 {
     [DbContext(typeof(PetSaude_CompletoContext))]
-    partial class PetSaude_CompletoContextModelSnapshot : ModelSnapshot
+    [Migration("20260312191947_paciente")]
+    partial class paciente
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -151,58 +154,6 @@ namespace PetSaude_Completo.Migrations
                     b.ToTable("MensagemComorbidade");
                 });
 
-            modelBuilder.Entity("PetSaude_Completo.Models.Paciente", b =>
-                {
-                    b.Property<int>("PacienteId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PacienteId"));
-
-                    b.Property<string>("Celular")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Cns")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Cpf")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DataNascimento")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Microarea")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nome")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Raca")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Sexo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("PacienteId");
-
-                    b.ToTable("Pacientes");
-                });
-
-            modelBuilder.Entity("PetSaude_Completo.Models.PacienteComorbidade", b =>
-                {
-                    b.Property<int>("PacienteId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ComorbidadeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("PacienteId", "ComorbidadeId");
-
-                    b.HasIndex("ComorbidadeId");
-
-                    b.ToTable("PacienteComorbidades");
-                });
-
             modelBuilder.Entity("PetSaude_Completo.Models.Mensagem", b =>
                 {
                     b.HasOne("PetSaude_Completo.Models.Area", "Area")
@@ -249,40 +200,14 @@ namespace PetSaude_Completo.Migrations
                     b.Navigation("Mensagem");
                 });
 
-            modelBuilder.Entity("PetSaude_Completo.Models.PacienteComorbidade", b =>
-                {
-                    b.HasOne("PetSaude_Completo.Models.Comorbidade", "Comorbidade")
-                        .WithMany("PacienteComorbidades")
-                        .HasForeignKey("ComorbidadeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PetSaude_Completo.Models.Paciente", "Paciente")
-                        .WithMany("PacienteComorbidades")
-                        .HasForeignKey("PacienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Comorbidade");
-
-                    b.Navigation("Paciente");
-                });
-
             modelBuilder.Entity("PetSaude_Completo.Models.Comorbidade", b =>
                 {
                     b.Navigation("MensagemComorbidades");
-
-                    b.Navigation("PacienteComorbidades");
                 });
 
             modelBuilder.Entity("PetSaude_Completo.Models.Mensagem", b =>
                 {
                     b.Navigation("MensagemComorbidades");
-                });
-
-            modelBuilder.Entity("PetSaude_Completo.Models.Paciente", b =>
-                {
-                    b.Navigation("PacienteComorbidades");
                 });
 #pragma warning restore 612, 618
         }

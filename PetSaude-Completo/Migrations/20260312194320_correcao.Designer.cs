@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PetSaude_Completo.Data;
 
@@ -11,9 +12,11 @@ using PetSaude_Completo.Data;
 namespace PetSaude_Completo.Migrations
 {
     [DbContext(typeof(PetSaude_CompletoContext))]
-    partial class PetSaude_CompletoContextModelSnapshot : ModelSnapshot
+    [Migration("20260312194320_correcao")]
+    partial class correcao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,14 +1,16 @@
-﻿using System.Collections.Generic;
-
-namespace PetSaude_Completo.Models
+﻿namespace PetSaude_Completo.Models
 {
     public class Comorbidade
     {
         public int ComorbidadeId { get; set; }
         public string? Nome { get; set; }
 
-        // 🔥 RELACIONAMENTO N:N
+        // RELACIONAMENTO COM MENSAGEM
         public ICollection<MensagemComorbidade> MensagemComorbidades { get; set; }
             = new List<MensagemComorbidade>();
+
+        // RELACIONAMENTO COM PACIENTE
+        public ICollection<PacienteComorbidade> PacienteComorbidades { get; set; }
+            = new List<PacienteComorbidade>();
     }
 }
