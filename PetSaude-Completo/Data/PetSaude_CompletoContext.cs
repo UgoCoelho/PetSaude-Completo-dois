@@ -56,5 +56,8 @@ namespace PetSaude_Completo.Data
                 .WithMany(c => c.PacienteComorbidades)
                 .HasForeignKey(pc => pc.ComorbidadeId);
         }
+        public DbSet<PetSaude_Completo.Models.AgenteSaude> AgenteSaude { get; set; } = default!;
+        public DbSet<PetSaude_Completo.Models.Microarea> Microarea { get; set; } = default!;
+        public DbSet<PetSaude_Completo.Models.UnidadeAtendimento> UnidadeAtendimento { get; set; } = default!;
     }
 }
