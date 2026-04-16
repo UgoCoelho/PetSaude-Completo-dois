@@ -1,8 +1,65 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-4">
+
+    <h2 class="mb-4">Acesso Rápido</h2>
+
+    <div class="row g-4">
+
+        <!-- PACIENTE -->
+        <div class="col-md-3">
+            <a asp-controller="Paciente" asp-action="Index" class="text-decoration-none">
+                <div class="card text-center shadow h-100 border-primary">
+                    <div class="card-body">
+                        <h1>👤</h1>
+                        <h5 class="card-title">Pacientes</h5>
+                        <p class="text-muted">Visualizar registros</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- MICROAREA -->
+        <div class="col-md-3">
+            <a asp-controller="Microarea" asp-action="Index" class="text-decoration-none">
+                <div class="card text-center shadow h-100 border-success">
+                    <div class="card-body">
+                        <h1>🗺️</h1>
+                        <h5 class="card-title">Microáreas</h5>
+                        <p class="text-muted">Visualizar regiões</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- MENSAGEM -->
+        <div class="col-md-3">
+            <a asp-controller="Mensagem" asp-action="Index" class="text-decoration-none">
+                <div class="card text-center shadow h-100 border-warning">
+                    <div class="card-body">
+                        <h1>💬</h1>
+                        <h5 class="card-title">Mensagens</h5>
+                        <p class="text-muted">Ver comunicados</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- UNIDADE -->
+        <div class="col-md-3">
+            <a asp-controller="UnidadeAtendimento" asp-action="Index" class="text-decoration-none">
+                <div class="card text-center shadow h-100 border-danger">
+                    <div class="card-body">
+                        <h1>🏥</h1>
+                        <h5 class="card-title">Unidades</h5>
+                        <p class="text-muted">Visualizar locais</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
 </div>
