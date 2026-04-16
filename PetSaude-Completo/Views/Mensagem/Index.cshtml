@@ -1,77 +1,79 @@
 ﻿@model IEnumerable<PetSaude_Completo.Models.Mensagem>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Mensagens";
 }
 
-<h1>Mensagens Cadastradas</h1>
+<div class="container mt-4">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Titulo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Area)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Categoria)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HorarioEnvio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FrequenciaMensagem)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Conteudo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataInicio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataFim)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Titulo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Area.AreaId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Categoria.CategoriaId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HorarioEnvio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FrequenciaMensagem.FrequenciaId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Conteudo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataInicio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataFim)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.MensagemId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MensagemId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MensagemId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <!-- TOPO -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>📩 Mensagens Cadastradas</h2>
+        <a asp-action="Create" class="btn btn-primary">
+            + Nova Mensagem
+        </a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <!-- ESTADO VAZIO -->
+        <div class="alert alert-info text-center">
+            <h4 class="mb-2">📭 Nenhuma mensagem cadastrada</h4>
+            <p class="mb-0">Clique em <strong>"Nova Mensagem"</strong> para começar.</p>
+        </div>
+    }
+    else
+    {
+        <!-- TABELA -->
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle shadow-sm">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Título</th>
+                        <th>Área</th>
+                        <th>Categoria</th>
+                        <th>Envio</th>
+                        <th>Frequência</th>
+                        <th>Conteúdo</th>
+                        <th>Início</th>
+                        <th>Fim</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Titulo</td>
+                            <td>@item.Area?.Nome</td>
+                            <td>@item.Categoria?.Nome</td>
+                            <td>@item.HorarioEnvio</td>
+                            <td>@item.FrequenciaMensagem?.Nome</td>
+                            <td>
+                                @(item.Conteudo.Length > 30
+                                    ? item.Conteudo.Substring(0, 30) + "..."
+                                    : item.Conteudo)
+                            </td>
+                            <td>@item.DataInicio?.ToString("dd/MM/yyyy")</td>
+                            <td>@item.DataFim?.ToString("dd/MM/yyyy")</td>
+
+                            <!-- AÇÕES -->
+                            <td class="text-center">
+                                <a asp-action="Edit" asp-route-id="@item.MensagemId" class="btn btn-sm btn-warning me-1">
+                                    ✏️
+                                </a>
+                                <a asp-action="Details" asp-route-id="@item.MensagemId" class="btn btn-sm btn-info me-1">
+                                    🔍
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.MensagemId" class="btn btn-sm btn-danger">
+                                    🗑️
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+</div>
